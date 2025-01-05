@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EntusiAsta - Home</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="assets/vueHome.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="highlight">Entusi<span class="wordplay">asta</span></h1>
+        <p>La piattaforma migliore per vendere e comprare oggetti esclusivi</p>
+    </header>
+    <nav>
+        <a href="/PersonalArea.html">Area Personale</a>
+        <a href="/auctions.html">Visualizza tutte le aste</a>
+        <a href="/users.html">Visualizza gli utenti</a>
+    </nav>
+    <section class="hero">
+        <h1>Benvenuto su Entusiasta!</h1>
+        <p>Esplora le aste più esclusive o registra un account per iniziare a partecipare.</p>
+    </section>
+    <section class="content" id="app">
+        <div v-for="(section, index) in sections" :key="index" @click="toggleSection(index)">
+            <h2>{{ section.title }}</h2>
+            <p>{{ section.description }}</p>
+            <div class="expandable" :class="{ expanded: section.expanded }">
+                <p>{{ section.details }}</p>
+            </div>
+            <span class="toggle-indicator">{{ section.expanded ? '▲' : '▼' }}</span>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Entusiasta. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+
+</html>

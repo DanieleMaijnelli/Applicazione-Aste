@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utenti - Aste Online</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="assets/vueUsers.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="highlight">Entusi<span class="wordplay">asta</span></h1>
+        <p>Visualizza tutti gli utenti registrati e le loro aste vinte.</p>
+    </header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/personalArea.html">Area Personale</a>
+        <a href="/auctions.html">Visualizza tutte le aste</a>
+    </nav>
+    <section class="form-section">
+
+        <h2>Elenco Utenti</h2>
+        <form @submit.prevent="searchUsers">
+            <div class="form-group">
+                <label for="search">Cerca un utente</label>
+                <input type="text" id="search" v-model="searchQuery"
+                    placeholder="Inserisci l'id o altre informazioni per cercare l'utente">
+                <button type="submit">Cerca</button>
+            </div>
+        </form>
+        
+        <p class="error" v-if="users.length === 0">Nessun utente soddisfa i parametri della ricerca</p>
+        <ul class="user-list">
+            <li v-for="user in users" :key="user.id">
+                <div class="user-info">
+                    <span><strong>Username:</strong> {{ user.username }}</span>
+                    <span><strong>Nome:</strong> {{ user.name }}</span>
+                    <span><strong>Cognome:</strong> {{ user.surname }}</span>
+                    <button @click="toggleAuctions(user.id)">
+                        {{ user.showAuctions ? 'Nascondi Aste Vinte' : 'Visualizza Aste Vinte' }}
+                    </button>
+                </div>
+                <ul v-if="user.showAuctions" class="auctions-list">
+                    <li v-for="auction in user.wonAuctions" :key="auction.id">
+                        <strong>{{ auction.title }}</strong>: {{ auction.description }}
+                    </li>
+                    <li v-if="user.wonAuctions.length === 0">Nessuna asta vinta.</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <footer>
+        <p>&copy; 2025 Entusiasta. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+
+</html>

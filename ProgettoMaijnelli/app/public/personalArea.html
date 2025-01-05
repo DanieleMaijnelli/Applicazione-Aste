@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticazione - Aste Online</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="assets/vuePersonalArea.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="highlight">Entusi<span class="wordplay">asta</span></h1>
+        <p>Gestisci il tuo account per partecipare alle aste.</p>
+    </header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/auctions.html">Visualizza tutte le aste</a>
+        <a href="/users.html">Visualizza utenti</a>
+    </nav>
+    <section id="authentication-app">
+        <div v-if="isAuthenticated">
+            <h2>Benvenuto {{ user.username }}</h2>
+            <p><strong>Id:</strong> {{ user.id }}</p>
+            <p><strong>Nome:</strong> {{ user.name }}</p>
+            <p><strong>Cognome:</strong> {{ user.surname }}</p>
+        </div>
+
+        <div v-else>
+            <div v-if="isSignin">
+                <h2>Accedi</h2>
+                <form @submit.prevent="handleSignin">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" v-model="form.username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" v-model="form.password" required>
+                    </div>
+                    <button type="submit">Accedi</button>
+                </form>
+            </div>
+            
+            <div v-else>
+                <h2>Registrati</h2>
+                <form @submit.prevent="handleSignup">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" v-model="form.username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" v-model="form.password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" v-model="form.name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="surname">Cognome</label>
+                        <input type="text" id="surname" v-model="form.surname" required>
+                    </div>
+                    <button type="submit">Registrati</button>
+                </form>
+            </div>
+            <p>
+                <button @click="toggleAuthForm">
+                    {{ isSignin ? 'Non hai un account? Registrati' : 'Hai già un account? Accedi' }}
+                </button>
+            </p>
+        </div>
+
+        <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+        <p v-if="successMessage" class="success">{{ successMessage }}</p>
+    </section>
+    <footer>
+        <p>&copy; 2025 Entusiasta. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+
+</html>

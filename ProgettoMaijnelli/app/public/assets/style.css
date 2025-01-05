@@ -1,0 +1,449 @@
+.highlight {
+    color: #ffcc00;
+    text-shadow: 2px 2px 4px #606a3e;
+}
+
+.wordplay {
+    color: #ff9d00;
+    font-style: italic;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #444;
+    padding: 0.5em;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1em;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color: #ffcc00;
+}
+
+.hero {
+    background-color: #eee;
+    padding: 2em;
+    text-align: center;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #333;
+}
+
+.hero p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+.content {
+    margin: 2em auto;
+    padding: 0 10%;
+}
+
+.content div {
+    margin: 0 1em;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.content div:hover {
+    background-color: #f0f0f0;
+}
+
+.content h2 {
+    margin-bottom: 0.5em;
+}
+
+.content .expandable {
+    display: none;
+}
+
+.content .expanded {
+    display: block;
+}
+
+.toggle-indicator {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #555;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+    margin-top: 2em;
+}
+
+
+
+.form-section {
+    max-width: 400px;
+    margin: 2em auto;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h2 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.form-group {
+    margin-bottom: 1em;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 0.75em;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    margin-top: 1em;
+    text-align: center;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+    margin-top: 1em;
+    text-align: center;
+}
+
+.user-list {
+    list-style: none;
+    padding: 0;
+    margin: 2em 0;
+}
+
+.user-list li {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    padding: 1em;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.auctions-list {
+    list-style: none;
+    padding: 0.5em 0 0.5em 1em;
+    margin: 0;
+    border-top: 1px solid #ddd;
+}
+
+.auctions-list li {
+    padding: 0.5em 0;
+}
+
+
+.auction-list {
+    list-style: none;
+    padding: 0;
+    margin: 2em 0;
+}
+
+.auction-list li {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    padding: 1em;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auction-list li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.auction-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.auction-info strong {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.auction-info span {
+    flex: 1;
+    margin-left: 1em;
+    color: #777;
+}
+
+.auction-info button {
+    margin-left: 10px;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+}
+
+.bids-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1em;
+}
+
+.bids-list li {
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.bids-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.form-section form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 1em 0.5em;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    header p {
+        font-size: 0.9em;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+        padding: 1em;
+    }
+
+    nav a {
+        margin: 5px 0;
+        font-size: 0.9em;
+        padding: 10px;
+        width: 90%;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+    .hero {
+        padding: 1.5em;
+    }
+
+    .hero h1 {
+        font-size: 1.5em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .content {
+        margin: 1em auto;
+        padding: 0 5%;
+    }
+
+    .content div {
+        margin: 1em 0;
+        padding: 1em;
+        font-size: 0.9em;
+    }
+
+    .content h2 {
+        font-size: 1.2em;
+    }
+
+    .toggle-indicator {
+        font-size: 1em;
+    }
+
+    .form-section {
+        max-width: 90%;
+        margin: 1em auto;
+        padding: 1em;
+    }
+
+    .form-section h2 {
+        font-size: 1.5em;
+    }
+
+    .form-group label {
+        font-size: 0.9em;
+    }
+
+    .form-group input,
+    .form-section form textarea {
+        font-size: 0.9em;
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 0.5em;
+    }
+
+    .user-list li,
+    .auction-list li {
+        padding: 0.8em;
+        margin-bottom: 1em;
+    }
+
+    .user-info,
+    .auction-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user-info span,
+    .auction-info span {
+        margin: 5px 0;
+    }
+
+    .user-info button,
+    .auction-info button {
+        margin-top: 10px;
+    }
+
+    .bids-list li {
+        padding: 0.5em;
+    }
+
+    footer {
+        padding: 0.5em;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    header p {
+        font-size: 0.8em;
+    }
+
+    nav a {
+        font-size: 0.8em;
+        padding: 8px;
+    }
+
+    .hero h1 {
+        font-size: 1.3em;
+    }
+
+    .hero p {
+        font-size: 0.8em;
+    }
+
+    .content div {
+        font-size: 0.8em;
+        padding: 0.8em;
+    }
+
+    .form-section h2 {
+        font-size: 1.2em;
+    }
+
+    .form-group label {
+        font-size: 0.8em;
+    }
+
+    button {
+        font-size: 0.8em;
+        padding: 0.4em;
+    }
+
+    .user-list li,
+    .auction-list li {
+        padding: 0.6em;
+    }
+}

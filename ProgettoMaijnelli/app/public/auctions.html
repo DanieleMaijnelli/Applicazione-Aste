@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Aste - Aste Online</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="assets/vueAuctions.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="highlight">Entusi<span class="wordplay">asta</span></h1>
+        <p>Gestisci e partecipa alle aste.</p>
+    </header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/personalArea.html">Area Personale</a>
+        <a href="/users.html">Visualizza utenti</a>
+    </nav>
+    <section class="form-section">
+        <h2>Elenco Aste</h2>
+
+        <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+        <p v-if="successMessage" class="success">{{ successMessage }}</p>
+
+        <form @submit.prevent="searchAuctions">
+            <div class="form-group">
+                <label for="search">Cerca un'asta</label>
+                <input type="text" id="search" v-model="searchQuery"
+                    placeholder="Inserisci una parola chiave o l'id dell'asta">
+                <button type="submit">Cerca</button>
+            </div>
+        </form>
+
+        <ul class="auction-list">
+            <li v-for="auction in auctions" :key="auction.id">
+                <div class="auction-info">
+                    <span><strong>Titolo:</strong> {{ auction.title }}</span>
+                    <span><strong>Descrizione:</strong> {{ auction.description }}</span>
+                    <span><strong>Data di fine asta:</strong> {{ new Date(auction.endDate).toLocaleString('it-IT', {
+                        timeZone: 'Europe/Rome' }) }}</span>
+                    <span><strong>Offerta minima:</strong> €{{ auction.startingBid }}</span>
+                    <span><strong>Proprietario:</strong> {{ auction.owner }}</span>
+                    <span v-if="auction.winner"><strong>Vincitore:</strong> {{ auction.winner }}</span>
+                    <button @click="viewAuctionDetails(auction.id)">
+                        {{ auction.showBids ? 'Nascondi Offerte' : 'Visualizza Offerte' }}
+                    </button>
+                    <button @click="prepareEditAuction(auction)">Modifica</button>
+                    <button @click="deleteAuction(auction.id)">Cancella</button>
+                </div>
+
+                <ul v-if="auction.showBids" class="bids-list">
+                    <li v-for="bid in auction.bids" :key="bid.id">
+                        <strong>Id</strong>: {{ bid.id }}
+                        <strong>{{ bid.user }}</strong>: €{{ bid.value }}
+                        <span>({{ new Date(bid.date).toLocaleString('it-IT', {
+                            timeZone: 'Europe/Rome' }) }})</span>
+                    </li>
+                    <li v-if="auction.bids.length === 0">Nessuna offerta per questa asta.</li>
+                    <li>
+                        <form @submit.prevent="placeBid(auction.id)">
+                            <input type="number" v-model="newBidValue" placeholder="Inserisci offerta" required>
+                            <button type="submit">Fai un'offerta</button>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <div v-if="editAuction.id">
+            <h3 id="modifyAuction">Modifica Asta</h3>
+            <form @submit.prevent="editAuctionDetails">
+                <div class="form-group">
+                    <label for="editTitle">Titolo</label>
+                    <input type="text" id="editTitle" v-model="editAuction.title" required>
+                </div>
+                <div class="form-group">
+                    <label for="editDescription">Descrizione</label>
+                    <textarea id="editDescription" v-model="editAuction.description" required></textarea>
+                </div>
+                <button type="submit">Salva</button>
+                <button type="button" @click="editAuction = { id: null, title: '', description: '' }">Annulla</button>
+            </form>
+        </div>
+
+        <h3>Crea una nuova asta</h3>
+        <form @submit.prevent="createAuction">
+            <div class="form-group">
+                <label for="title">Titolo</label>
+                <input type="text" id="title" v-model="newAuction.title" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Descrizione</label>
+                <textarea id="description" v-model="newAuction.description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="endDate">Data di fine</label>
+                <input type="datetime-local" id="endDate" v-model="newAuction.endDate" required>
+            </div>
+            <div class="form-group">
+                <label for="startingBid">Offerta minima</label>
+                <input type="number" id="startingBid" v-model="newAuction.startingBid" required>
+            </div>
+            <button type="submit">Crea Asta</button>
+        </form>
+
+        <h3>Cerca un'offerta specifica</h3>
+        <form @submit.prevent="searchBid">
+            <div class="form-group">
+                <input type="number" id="bidSearch" v-model="bidSearchQuery" placeholder="Inserisci l'id dell'offerta"
+                    required>
+                <button type="submit">Cerca</button>
+            </div>
+        </form>
+        <div v-if="searchedBid">
+            <p><strong>Id:</strong> {{ searchedBid.id }}</p>
+            <p><strong>Asta:</strong> {{ searchedBid.auction }}</p>
+            <p><strong>Utente:</strong> {{ searchedBid.user }}</p>
+            <p><strong>Valore:</strong> €{{ searchedBid.value }}</p>
+            <p><strong>Data:</strong> {{ new Date(searchedBid.date).toLocaleString('it-IT', {
+                timeZone: 'Europe/Rome' }) }}</p>
+        </div>
+
+    </section>
+    <footer>
+        <p>&copy; 2025 Entusiasta. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+
+</html>
